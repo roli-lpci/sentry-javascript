@@ -20,8 +20,8 @@ export async function sentryReactRouter(
 
   plugins.push(makeConfigInjectorPlugin(options));
 
-  if (options.experimental_rscAutoInstrumentation?.enabled !== false) {
-    plugins.push(makeAutoInstrumentRSCPlugin(options.experimental_rscAutoInstrumentation ?? {}));
+  if (options.experimental_rscAutoInstrumentation?.enabled === true) {
+    plugins.push(makeAutoInstrumentRSCPlugin(options.experimental_rscAutoInstrumentation));
   }
 
   if (process.env.NODE_ENV !== 'development' && viteConfig.command === 'build' && viteConfig.mode !== 'development') {
